@@ -1,25 +1,21 @@
-# MeshAlert
+# MeshAlert - BLE Mesh Emergency Alert System
 
 A Bluetooth Low Energy (BLE) mesh networking Android application for emergency alert broadcasting and location tracking over a decentralized mesh network.
 
 ## Overview
 
-MeshAlert is an Android app that leverages Bluetooth Low Energy mesh technology to create a decentralized communication network. The app enables users to:
+MeshAlert enables users to send emergency alerts across a decentralized BLE mesh network, track locations in real-time, and operate in offline-first mode after initial setup.
 
-- **Send Alerts** - Broadcast emergency alerts across the BLE mesh network
-- **Track Locations** - Share and view locations using integrated mapping
-- **Offline-First** - Operate without internet connectivity (after initial setup)
-- **Mesh Networking** - Extend communication range through multi-hop mesh relay
+## Key Features
 
-## Features
-
-- ✅ BLE mesh scanning and device discovery
-- ✅ User authentication (Login Activity)
-- ✅ Interactive offline map viewing with OpenStreetMap (via OSMDroid)
-- ✅ Real-time location tracking
-- ✅ GPS integration for precise positioning
-- ✅ Permission handling for BLE, location, and storage
-- ✅ Offline tile caching for maps (100% offline after initial cache)
+- BLE mesh scanning and device discovery
+- Emergency alert broadcasting across mesh network
+- Real-time location tracking with GPS integration
+- Offline map viewing (OpenStreetMap via OSMDroid)
+- User authentication system
+- Multi-hop mesh relay for extended range
+- Offline tile caching (100% offline capable)
+- Permission handling for BLE, location, and storage
 
 ## Requirements
 
@@ -28,14 +24,24 @@ MeshAlert is an Android app that leverages Bluetooth Low Energy mesh technology 
 - **Java Version**: 11+
 - **Gradle**: 8.0+
 
-### Permissions
+## Required Permissions
 
-The app requires the following permissions:
+```xml
+<!-- Bluetooth Permissions -->
+android.permission.BLUETOOTH
+android.permission.BLUETOOTH_ADMIN
+android.permission.BLUETOOTH_SCAN
+android.permission.BLUETOOTH_ADVERTISE
+android.permission.BLUETOOTH_CONNECT
 
-- **Bluetooth**: `BLUETOOTH`, `BLUETOOTH_ADMIN`, `BLUETOOTH_SCAN`, `BLUETOOTH_ADVERTISE`, `BLUETOOTH_CONNECT`
-- **Location**: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`
-- **Storage**: `WRITE_EXTERNAL_STORAGE` (Android 10 and below)
-- **Internet**: `INTERNET` (for downloading map tiles)
+<!-- Location Permissions -->
+android.permission.ACCESS_FINE_LOCATION
+android.permission.ACCESS_COARSE_LOCATION
+
+<!-- Storage & Internet -->
+android.permission.WRITE_EXTERNAL_STORAGE (Android 10 and below)
+android.permission.INTERNET (for map tile downloads)
+```
 
 ## Project Structure
 
@@ -44,16 +50,15 @@ MeshAlert/
 ├── app/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── AndroidManifest.xml
 │   │   │   ├── java/com/example/blemeshapp/
 │   │   │   │   ├── LoginActivity.kt
 │   │   │   │   └── MainActivity.kt
-│   │   │   └── res/
-│   │   │       ├── layout/
-│   │   │       ├── drawable/
-│   │   │       ├── mipmap/
-│   │   │       ├── values/
-│   │   │       └── xml/
+│   │   │   ├── res/
+│   │   │   │   ├── layout/
+│   │   │   │   ├── drawable/
+│   │   │   │   ├── mipmap/
+│   │   │   │   └── values/
+│   │   │   └── AndroidManifest.xml
 │   │   ├── androidTest/
 │   │   └── test/
 │   ├── build.gradle.kts
@@ -65,163 +70,135 @@ MeshAlert/
 └── README.md
 ```
 
-## Setup & Installation
+## Getting Started
 
 ### Prerequisites
 
-- Android Studio 2023.1+
-- Android SDK (API 29+)
+- Android Studio 2023.1 or later
+- Android SDK with API 29+
 - Gradle 8.0+
 
-### Steps
+### Installation
 
-1. **Clone the Repository**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/CKhurana13/MeshAlert.git
    cd MeshAlert
    ```
 
 2. **Open in Android Studio**
-   - File > Open > Select the MeshAlert project
-   - Android Studio will automatically download dependencies
+   - File → Open → Select MeshAlert folder
+   - Android Studio will auto-sync dependencies
 
-3. **Build the Project**
+3. **Build the project**
    ```bash
    ./gradlew build
    ```
 
-4. **Run on Emulator/Device**
+4. **Run on device/emulator**
    ```bash
    ./gradlew installDebug
    ```
 
 ## Usage
 
-### Login
-1. Launch the app - the LoginActivity is the entry point
-2. Authenticate with your credentials
-
-### Main Interface
-1. View the interactive map powered by OpenStreetMap
-2. Devices in the mesh network will appear as markers
-3. Use the map to track locations and coordinate alerts
-
-### BLE Mesh Operations
-- The app scans for nearby BLE mesh devices
-- Automatically relays messages through intermediate nodes
-- All communication is encrypted and decentralized
+1. **Launch the app** - LoginActivity appears first
+2. **Authenticate** - Enter your credentials
+3. **View the map** - Interactive OpenStreetMap interface
+4. **Send alerts** - Broadcast emergency messages to the mesh
+5. **Track devices** - See nearby devices and their locations
 
 ## Technologies Used
 
 - **Language**: Kotlin
-- **BLE Framework**: Android Bluetooth API
+- **Framework**: Android AppCompat + Material Design
+- **BLE**: Android Bluetooth API
 - **Mapping**: OSMDroid (offline OpenStreetMap)
-- **Architecture**: AppCompat + Material Design
-- **Build System**: Gradle with Kotlin DSL
+- **Build**: Gradle with Kotlin DSL
 
 ## Configuration
 
-### Gradle Build Properties
+### Build Properties
 
-Edit `gradle.properties` to configure:
+Edit `gradle.properties` to customize:
 - `compileSdk` - Target API level
-- `minSdk` - Minimum API level
+- `minSdk` - Minimum API level  
 - `versionCode` - Build version
 - `versionName` - Release version
 
-### Proguard Rules
+### Dependencies
 
-`app/proguard-rules.pro` configures code obfuscation for release builds.
+Manage versions in `gradle/libs.versions.toml`
 
 ## Development
 
-### Adding Dependencies
+### Code Style
 
-Edit `gradle/libs.versions.toml` to manage library versions:
+- Follow [Android Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
+- Use 4-space indentation
+- Write descriptive names for variables and functions
 
-```toml
-[libraries]
-# Add new dependencies here
-```
+### Testing
 
-Then reference in `app/build.gradle.kts`.
-
-### Building Variants
-
-- **Debug**: Unoptimized, debuggable build for development
-- **Release**: Optimized, obfuscated build for production
-
-## Testing
-
-Run unit tests:
 ```bash
+# Run unit tests
 ./gradlew test
-```
 
-Run instrumented tests on device/emulator:
-```bash
+# Run instrumented tests
 ./gradlew connectedAndroidTest
 ```
 
 ## Known Limitations
 
-- ⚠️ Mesh range depends on BLE range (typically 50-240m)
-- ⚠️ Map tiles require internet on first download
-- ⚠️ Battery consumption increases with active scanning
-- ⚠️ Requires explicit permission grants on Android 6.0+
-
-## Future Enhancements
-
-- [ ] Push notifications for emergency alerts
-- [ ] Message encryption and signing
-- [ ] Mesh network topology visualization
-- [ ] Battery optimization improvements
-- [ ] Multi-user mesh collaboration
-- [ ] Cloud sync for user data
+- BLE range typically 50-240m depending on device
+- Map tiles require internet on first download
+- Battery consumption increases with active BLE scanning
+- Requires explicit permissions on Android 6.0+
 
 ## Troubleshooting
 
-### BLE Scanning Not Working
-- Ensure Location permission is granted
-- Check BLE is enabled on device
-- Verify other devices are in range
+### BLE Scanning Issues
+- Verify Location permission is granted
+- Ensure Bluetooth is enabled
+- Check if other devices are in range
 
 ### Map Not Loading
 - Check Internet permission
-- Verify tile download is not blocked
-- Clear app cache: Settings > Apps > MeshAlert > Clear Cache
+- Verify network connectivity
+- Clear app cache: Settings → Apps → MeshAlert → Clear Cache
 
-### Build Fails
+### Build Errors
 ```bash
-# Clean build
-./gradlew clean build
-
-# Update dependencies
-./gradlew dependencies --refresh-dependencies
+./gradlew clean build --refresh-dependencies
 ```
 
 ## Contributing
 
 Contributions are welcome! Please:
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/YourFeature`)
 3. Commit changes (`git commit -m 'Add YourFeature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
+4. Push to branch (`git push origin feature/YourFeature`)
 5. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-## Support
+## Issues & Support
 
-For issues, questions, or suggestions, please open an issue on [GitHub Issues](https://github.com/CKhurana13/MeshAlert/issues).
+- [Report bugs](https://github.com/CKhurana13/MeshAlert/issues)
+- [Suggest features](https://github.com/CKhurana13/MeshAlert/discussions)
 
 ## Author
 
-**CKhurana13** - [GitHub Profile](https://github.com/CKhurana13)
+**CKhurana13** - [GitHub](https://github.com/CKhurana13)
 
 ---
 
+**Status**: Active Development  
 **Last Updated**: April 2026  
 **Version**: 1.0.0

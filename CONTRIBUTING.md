@@ -1,59 +1,98 @@
 # Contributing to MeshAlert
 
-We appreciate your interest in contributing to MeshAlert! This document provides guidelines and instructions for contributing to the project.
+Thank you for your interest in contributing to MeshAlert! We appreciate your help in improving this project.
 
 ## Code of Conduct
 
-Please be respectful and professional in all interactions within this project.
+Be respectful and professional in all interactions within this project.
 
-## Getting Started
+## How to Contribute
 
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally:
+### Reporting Bugs
+
+**Before submitting a bug report:**
+- Check if the issue already exists
+- Use a clear, descriptive title
+- Provide steps to reproduce
+- Describe the expected vs actual behavior
+- Include screenshots if applicable
+
+**Include:**
+- Device model and Android version
+- App version
+- Detailed steps to reproduce
+- Error logs or stack traces (if available)
+
+### Suggesting Enhancements
+
+**Before suggesting an enhancement:**
+- Check if it's already been requested
+- Provide a clear, descriptive title
+- Explain the motivation and use case
+- List any alternative solutions you've considered
+
+### Pull Requests
+
+1. **Fork the repository**
    ```bash
    git clone https://github.com/YOUR-USERNAME/MeshAlert.git
    cd MeshAlert
    ```
-3. **Add upstream remote** for syncing:
-   ```bash
-   git remote add upstream https://github.com/CKhurana13/MeshAlert.git
-   ```
-4. **Create a feature branch**:
+
+2. **Create a feature branch**
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
+3. **Make your changes**
+   - Follow the code style guidelines
+   - Keep commits atomic and well-documented
+   - Add tests for new functionality
+
+4. **Commit with clear messages**
+   ```bash
+   git commit -m "feat: Add your feature"
+   git commit -m "fix: Resolve issue #123"
+   git commit -m "docs: Update documentation"
+   ```
+
+5. **Push to your fork**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. **Open a Pull Request on GitHub**
+   - Write a clear PR description
+   - Reference related issues
+   - Describe testing performed
+   - Include screenshots for UI changes
+
 ## Development Setup
 
-1. **Open in Android Studio**
-2. **Sync Gradle files** (Android Studio will prompt)
-3. **Install Build Tools** if needed
-4. **Run on emulator or device**
+### Prerequisites
 
-## Making Changes
+- Android Studio 2023.1+
+- Java 11+
+- Android SDK (API 29+)
+- Git
 
-### Code Style
+### Setup Steps
 
-- Follow [Android Code Style Guidelines](https://developer.android.com/kotlin/style-guide)
-- Use **Kotlin** for new code
-- Maintain consistent indentation (4 spaces)
-- Write descriptive variable and function names
+1. Clone your fork
+2. Open in Android Studio
+3. Let Gradle sync dependencies automatically
+4. Run `./gradlew build` to verify setup
 
-### Git Workflow
+## Code Guidelines
 
-1. **Make your changes** in the feature branch
-2. **Test thoroughly** on emulator/device
-3. **Commit with clear messages**:
-   ```bash
-   git commit -m "feat: Add feature description"
-   git commit -m "fix: Resolve issue #123"
-   git commit -m "docs: Update README"
-   ```
-4. **Keep commits atomic** (one logical change per commit)
+### Kotlin Style
 
-### Commit Message Format
+- Follow [Google's Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
+- Use descriptive variable and function names
+- Add comments for complex logic
+- Avoid deep nesting
 
-Use conventional commits for clarity:
+### Commit Messages
 
 ```
 type(scope): subject
@@ -63,153 +102,71 @@ description
 Fixes #issue-number
 ```
 
-**Types**:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation
-- `style`: Code style (formatting, missing semicolons, etc.)
-- `refactor`: Code refactoring
-- `perf`: Performance improvements
-- `test`: Adding/updating tests
-- `chore`: Build, dependencies, etc.
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
-## Submitting Changes
+### Testing
 
-1. **Push to your fork**:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-2. **Open a Pull Request** on GitHub
-3. **Fill out PR template** with:
-   - Description of changes
-   - Related issues/discussions
-   - Testing performed
-   - Screenshots (if UI changes)
+Before submitting a PR:
 
-4. **Address code review feedback** promptly
+```bash
+# Run unit tests
+./gradlew test
 
-## Reporting Issues
+# Run lint checks
+./gradlew lint
 
-### Bug Reports
-
-Include:
-- Clear title describing the issue
-- Steps to reproduce
-- Expected vs actual behavior
-- Device/Android version info
-- Screenshots/logs if applicable
-
-### Feature Requests
-
-Include:
-- Clear description of the feature
-- Use case/motivation
-- Potential alternatives
-- Any relevant references
-
-## Testing
-
-### Before Submitting PR
-
-1. **Run unit tests**:
-   ```bash
-   ./gradlew test
-   ```
-
-2. **Run instrumented tests**:
-   ```bash
-   ./gradlew connectedAndroidTest
-   ```
-
-3. **Manual testing** on multiple API levels (29+)
-
-4. **Check for BLE issues**:
-   - Test on real device (not just emulator)
-   - Verify permissions are granted
-   - Test with actual BLE devices
-
-### Test Coverage
-
-Aim for reasonable test coverage:
-- Unit tests for business logic
-- Instrumented tests for UI components
-- Integration tests for BLE operations
-
-## Documentation
-
-### JavaDoc Comments
-
-Add for public methods/classes:
-
-```kotlin
-/**
- * Scans for BLE mesh devices within range.
- *
- * @param timeout Duration to scan in milliseconds
- * @return List of discovered BluetoothDevice objects
- */
-fun scanForDevices(timeout: Long): List<BluetoothDevice>
+# Build debug version
+./gradlew assembleDebug
 ```
-
-### Update Documentation
-
-- Update README if changing features
-- Update API docs for new classes/methods
-- Add comments for complex logic
-
-## Project Maintainers
-
-MeshAlert is maintained by **CKhurana13**. For major decisions or design discussions, please reach out to the maintainers.
 
 ## Review Process
 
-- Maintainers will review your PR
-- Feedback will be provided for improvements
-- Once approved, your changes will be merged
-- Your contribution will be recognized (if desired)
+1. Maintainers review your PR
+2. Address feedback and make changes
+3. Re-request review once updates are complete
+4. Once approved, your changes will be merged
 
 ## Development Tips
 
-### Useful Gradle Commands
+### Useful Commands
 
 ```bash
-# Build debug version
-./gradlew assembleDebug
+# Clean build
+./gradlew clean build
 
-# Build release version
-./gradlew assembleRelease
+# Run tests
+./gradlew test
 
-# Run specific test
-./gradlew test --tests com.example.blemeshapp.*
-
-# Check for lint warnings
+# Check for issues
 ./gradlew lint
 
-# Format code
-./gradlew spotlessApply
+# Debug on device
+./gradlew installDebug
+adb logcat
 ```
 
-### Debugging BLE Issues
+### Debugging BLE
 
-- Enable Bluetooth logs: Settings > Developer Options > Enable BLE logging
+- Check logcat: `adb logcat | grep bluetooth`
 - Use Android Profiler in Android Studio
-- Check logcat for error messages:
-  ```bash
-  adb logcat | grep bluetooth
-  ```
+- Test on real devices (not just emulator for BLE)
+- Enable Developer Options for detailed logging
 
-## Performance Considerations
+### Performance Tips
 
-- Minimize battery drain from BLE scanning
-- Optimize map rendering for large tile caches
-- Profile memory usage with Android Profiler
-- Avoid memory leaks in Activities/Services
+- Profile memory: Android Studio → Profiler
+- Monitor battery usage: Settings → Battery
+- Test on minimum SDK version (API 29)
 
 ## Questions?
 
 - Open an issue on GitHub
-- Discuss in pull requests
-- Check existing documentation
+- Start a discussion on GitHub Discussions
+- Comment on related pull requests
+
+## Recognition
+
+Contributors will be recognized in the project's contributor list!
 
 ---
 
