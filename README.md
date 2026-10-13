@@ -4,7 +4,7 @@ A Bluetooth Low Energy (BLE) mesh networking Android application for emergency a
 
 ## Overview
 
-MeshAlert enables users to send emergency alerts across a decentralized BLE mesh network, track locations in real-time, and operate in offline-first mode after initial setup.
+MeshAlert is a next-generation, decentralized emergency communication and disaster-response platform that leverages Bluetooth Low Energy (BLE) mesh networking to deliver critical SOS alerts, enable real-time location tracking, and coordinate rescue efforts without relying on cellular networks or internet connectivity. Designed for resilience in disaster-struck regions, remote areas, and network blackout scenarios, MeshAlert ensures reliable peer-to-peer communication, rapid emergency broadcasting, and offline-first operation after initial setup—transforming nearby devices into a collaborative, self-sustaining safety network when traditional communication infrastructure fails.
 
 ## Key Features
 
@@ -193,9 +193,18 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 - [Report bugs](https://github.com/CKhurana13/MeshAlert/issues)
 - [Suggest features](https://github.com/CKhurana13/MeshAlert/discussions)
 
-## Author
+## Contributers
 
-**CKhurana13** - [GitHub](https://github.com/CKhurana13)
+This project was developed by:
+
+- **CKhurana13** - [GitHub Profile](https://github.com/CKhurana13) -  Main developer and project lead
+- **Raghav** - [GitHub Profile](https://github.com/Raghav-6509) - Frontend development and dashboard design with its implementation
+
+##  Contact
+
+For questions or support, please open an issue on GitHub.
+
+**Note**: This project is for educational and privacy awareness purposes. Always review the code and understand what data is being collected before using any privacy tool.
 
 ---
 
